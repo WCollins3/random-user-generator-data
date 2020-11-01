@@ -1,4 +1,5 @@
-﻿using RandomUserGeneratorData.Core.DataRetrieval;
+﻿using Newtonsoft.Json.Linq;
+using RandomUserGeneratorData.Core.DataRetrieval;
 using RandomUserGeneratorData.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -28,10 +29,27 @@ namespace RandomUserGeneratorData.DataRetrieval
                 }
             }
 
-            Console.WriteLine(text);
+            var responseDetails = JObject.Parse(text);
+            var results = responseDetails["results"];
+            var users = new List<User>();
+            foreach (var result in results)
+            {
+                var gender = result["gender"].ToString();
+                var firstName = result["name"]["first"].ToString();
+                var lastName = result["name"]["last"].ToString();
+                var country = result["location"]["country"].ToString();
 
-            // Return dummy list of users
-            IEnumerable<User> users = new List<User>();
+                var user = new User
+                {
+                    Gender = gender,
+                    FirstName = firstName,
+                    LastName = lastName,
+                    Country = country,
+                };
+
+                users.Add(user);
+            }
+
             return users;
         }
     }
