@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RandomUserGeneratorData.Core.Logic;
+using RandomUserGeneratorData.Core.Models;
 
 namespace RandomUserGeneratorData.Controllers
 {
@@ -13,15 +15,18 @@ namespace RandomUserGeneratorData.Controllers
     {
         private readonly ILogger<RandomUserGeneratorDataController> _logger;
 
-        public RandomUserGeneratorDataController(ILogger<RandomUserGeneratorDataController> logger)
+        private IRandomUserGeneratorLogic _randomUserGeneratorLogic;
+
+        public RandomUserGeneratorDataController(ILogger<RandomUserGeneratorDataController> logger, IRandomUserGeneratorLogic randomUserGeneratorLogic)
         {
             _logger = logger;
+            _randomUserGeneratorLogic = randomUserGeneratorLogic;
         }
 
         [HttpGet("numberOfUsers/{numUsers:int}/data")]
-        public int Get(int numUsers)
+        public RandomUserGeneratorDataHolder Get(int numUsers)
         {
-            return numUsers;
+            return _randomUserGeneratorLogic.GetRandomUserGeneratorDataHolder(numUsers);
         }
     }
 }
