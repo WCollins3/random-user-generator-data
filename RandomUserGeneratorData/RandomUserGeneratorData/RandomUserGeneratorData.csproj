@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RandomUserGeneratorData.Core\RandomUserGeneratorData.Core.csproj" />
+    <ProjectReference Include="..\RandomUserGeneratorData.DataRetrieval\RandomUserGeneratorData.DataRetrieval.csproj" />
+    <ProjectReference Include="..\RandomUserGeneratorData.Logic\RandomUserGeneratorData.Logic.csproj" />
   </ItemGroup>
 
 
