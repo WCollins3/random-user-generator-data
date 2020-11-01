@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RandomUserGeneratorData.Core.DataRetrieval
 {
@@ -12,6 +13,6 @@ namespace RandomUserGeneratorData.Core.DataRetrieval
         /// </summary>
         /// <param name="numUsers">Number of <see cref="User"/>s to get.</param>
         /// <returns></returns>
-        IEnumerable<User> GetUsers(int numUsers);
+        Task<IEnumerable<User>> GetUsersAsync(int numUsers);
     }
 }

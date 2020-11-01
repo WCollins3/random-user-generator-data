@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomUserGeneratorData.Cor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomUserGeneratorData.Logic", "RandomUserGeneratorData.Logic\RandomUserGeneratorData.Logic.csproj", "{27620080-4090-43E8-AD58-BB103274E7FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomUserGeneratorData.DataRetrieval", "RandomUserGeneratorData.DataRetrieval\RandomUserGeneratorData.DataRetrieval.csproj", "{D488E9C1-E14D-465E-B225-0253621D3FDC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{27620080-4090-43E8-AD58-BB103274E7FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{27620080-4090-43E8-AD58-BB103274E7FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{27620080-4090-43E8-AD58-BB103274E7FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D488E9C1-E14D-465E-B225-0253621D3FDC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D488E9C1-E14D-465E-B225-0253621D3FDC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D488E9C1-E14D-465E-B225-0253621D3FDC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D488E9C1-E14D-465E-B225-0253621D3FDC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

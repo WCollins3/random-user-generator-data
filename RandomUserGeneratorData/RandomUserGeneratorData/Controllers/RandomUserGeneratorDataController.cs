@@ -24,9 +24,10 @@ namespace RandomUserGeneratorData.Controllers
         }
 
         [HttpGet("numberOfUsers/{numUsers:int}/data")]
-        public RandomUserGeneratorDataHolder Get(int numUsers)
+        public async Task<IActionResult> Get(int numUsers)
         {
-            return _randomUserGeneratorLogic.GetRandomUserGeneratorDataHolder(numUsers);
+            var randomUserGeneratorDataHolder = await _randomUserGeneratorLogic.GetRandomUserGeneratorDataHolder(numUsers);
+            return Ok(randomUserGeneratorDataHolder);
         }
     }
 }

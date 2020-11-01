@@ -4,6 +4,7 @@ using RandomUserGeneratorData.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RandomUserGeneratorData.Logic
 {
@@ -17,9 +18,9 @@ namespace RandomUserGeneratorData.Logic
         }
 
         /// <inheritdoc/>
-        public RandomUserGeneratorDataHolder GetRandomUserGeneratorDataHolder(int numUsers)
+        public async Task<RandomUserGeneratorDataHolder> GetRandomUserGeneratorDataHolder(int numUsers)
         {
-            var users = _randomUserRetriever.GetUsers(numUsers);
+            var users = await _randomUserRetriever.GetUsersAsync(numUsers);
             return new RandomUserGeneratorDataHolder(users);
         }
     }
