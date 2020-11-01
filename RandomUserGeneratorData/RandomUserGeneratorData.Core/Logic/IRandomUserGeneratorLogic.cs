@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace RandomUserGeneratorData.Core.Logic
 {
@@ -12,6 +13,6 @@ namespace RandomUserGeneratorData.Core.Logic
         /// </summary>
         /// <param name="numUsers">Number of <see cref="User"/>s to get data for.</param>
         /// <returns></returns>
-        RandomUserGeneratorDataHolder GetRandomUserGeneratorDataHolder(int numUsers);
+        Task<RandomUserGeneratorDataHolder> GetRandomUserGeneratorDataHolder(int numUsers);
     }
 }
