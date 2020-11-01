@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RandomUserGeneratorData.Core.Models
 {
-    public class RandomUserGeneratorData
+    public class RandomUserGeneratorDataHolder
     {
         /// <summary>
         ///     Dictionary linking a gender to the amount of <see cref="User"/>s that identify as that gender.
