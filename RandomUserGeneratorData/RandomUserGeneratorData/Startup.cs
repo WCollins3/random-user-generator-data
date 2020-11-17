@@ -29,6 +29,10 @@ namespace RandomUserGeneratorData
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient("RandomUser", client =>
+            {
+                client.BaseAddress = new Uri("https://randomuser.me");
+            });
             services.AddControllers();
             services.AddScoped<IRandomUserGeneratorLogic, RandomUserGeneratorLogic>();
             services.AddScoped<IRandomUserRetriever, RandomUserRetriever>();
