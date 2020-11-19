@@ -26,6 +26,11 @@ namespace RandomUserGeneratorData.Controllers
         [HttpGet("numberOfUsers/{numUsers:int}/data")]
         public async Task<IActionResult> Get(int numUsers)
         {
+            if (numUsers < 1)
+            {
+                return new BadRequestObjectResult($"Must request at least one user. Number of users requested: {numUsers}.");
+            }
+
             var randomUserGeneratorDataHolder = await _randomUserGeneratorLogic.GetRandomUserGeneratorDataHolder(numUsers);
             return Ok(randomUserGeneratorDataHolder);
         }
