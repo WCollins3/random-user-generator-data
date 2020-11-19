@@ -20,6 +20,11 @@ namespace RandomUserGeneratorData.Logic
         /// <inheritdoc/>
         public async Task<RandomUserGeneratorDataHolder> GetRandomUserGeneratorDataHolder(int numUsers)
         {
+            if (numUsers < 1)
+            {
+                throw new InvalidOperationException($"numUsers must be at least 1. Value of numUsers: {numUsers}.");
+            }
+
             var users = await _randomUserRetriever.GetUsersAsync(numUsers);
             return new RandomUserGeneratorDataHolder(users);
         }
