@@ -13,6 +13,6 @@ namespace RandomUserGeneratorData.Core.DataRetrieval
         /// </summary>
         /// <param name="numUsers">Number of <see cref="User"/>s to get.</param>
         /// <returns></returns>
-        Task<IEnumerable<User>> GetUsersAsync(int numUsers);
+        Task<IList<User>> GetUsersAsync(int numUsers);
     }
 }
