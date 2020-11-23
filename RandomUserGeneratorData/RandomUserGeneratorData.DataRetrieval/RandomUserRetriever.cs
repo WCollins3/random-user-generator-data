@@ -21,8 +21,13 @@ namespace RandomUserGeneratorData.DataRetrieval
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<User>> GetUsersAsync(int numUsers)
+        public async Task<IList<User>> GetUsersAsync(int numUsers)
         {
+            if (numUsers < 1)
+            {
+                throw new InvalidOperationException($"numUsers must be at least 1. Value of numUsers: {numUsers}.");
+            }
+
             var client = _httpClientFactory.CreateClient("RandomUser");
             string text = await client.GetStringAsync($"/api/?results={numUsers}");
 
