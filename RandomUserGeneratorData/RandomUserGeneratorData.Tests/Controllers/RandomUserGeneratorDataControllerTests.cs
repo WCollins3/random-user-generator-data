@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using RandomUserGeneratorData.Controllers;
+using RandomUserGeneratorData.Core.Exceptions;
 using RandomUserGeneratorData.Core.Logic;
 using RandomUserGeneratorData.Core.Models;
 using System.Collections.Generic;
@@ -92,6 +93,27 @@ namespace RandomUserGeneratorData.Tests.Controllers
             var result = await controller.Get(numUsers);
 
             Assert.IsInstanceOfType(result, typeof(BadRequestObjectResult));
+            logic.VerifyAll();
+            logger.VerifyAll();
+        }
+
+        [TestMethod]
+        public async Task Get_Catches_Exception_Returns_ObjectResult()
+        {
+            int numUsers = 1;
+
+            var logger = new Mock<ILogger<RandomUserGeneratorDataController>>(MockBehavior.Strict);
+            var logic = new Mock<IRandomUserGeneratorLogic>(MockBehavior.Strict);
+
+            string errorMessage = "Unexpected error message";
+            logic.Setup(x => x.GetRandomUserGeneratorDataHolder(numUsers))
+                .Throws(new UnexpectedApiException(errorMessage));
+
+            var controller = new RandomUserGeneratorDataController(logger.Object, logic.Object);
+
+            var result = await controller.Get(numUsers);
+
+            Assert.IsInstanceOfType(result, typeof(ObjectResult));
             logic.VerifyAll();
             logger.VerifyAll();
         }

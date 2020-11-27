@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json.Linq;
 using RandomUserGeneratorData.Core.DataRetrieval;
+using RandomUserGeneratorData.Core.Exceptions;
 using RandomUserGeneratorData.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,17 @@ namespace RandomUserGeneratorData.DataRetrieval
             }
 
             var client = _httpClientFactory.CreateClient("RandomUser");
-            string text = await client.GetStringAsync($"/api/?results={numUsers}");
+            string text;
+
+            try
+            {
+                text = await client.GetStringAsync($"/api/?results={numUsers}");
+            }
+            catch(Exception ex)
+            {
+                var message = $"Unexpected error from Random User API. Error message: {ex.Message}";
+                throw new UnexpectedApiException(message);
+            }
 
             var responseDetails = JObject.Parse(text);
             var results = responseDetails["results"];

@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Moq.Contrib.HttpClient;
+using RandomUserGeneratorData.Core.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -128,6 +129,38 @@ namespace RandomUserGeneratorData.DataRetrieval.Tests
 
             var ex = await Assert.ThrowsExceptionAsync<InvalidOperationException>(() => randomUserRetriever.GetUsersAsync(numUsers));
             Assert.AreEqual($"numUsers must be at least 1. Value of numUsers: {numUsers}.", ex.Message);
+
+            handler.VerifyAll();
+        }
+
+        [TestMethod]
+        public async Task GetUsersAsync_UnexpectedApiException()
+        {
+            int numUsers = 1;
+
+            var handler = new Mock<HttpMessageHandler>(MockBehavior.Strict);
+            var httpClientFactory = handler.CreateClientFactory();
+            var httpClient = handler.CreateClient();
+
+            // Actual error message from random user API
+            string errorMessage = "Unexpected error message.";
+
+            handler.SetupRequest(HttpMethod.Get, $"{requestUrl}{numUsers}")
+                .Throws(new Exception(errorMessage));
+
+            Mock.Get(httpClientFactory).Setup(x => x.CreateClient(clientName))
+                .Returns(() =>
+                {
+                    var client = handler.CreateClient();
+                    client.BaseAddress = new Uri(baseAddress);
+                    return client;
+
+                });
+
+            var randomUserRetriever = new RandomUserRetriever(httpClientFactory);
+
+            var ex = await Assert.ThrowsExceptionAsync<UnexpectedApiException>(() => randomUserRetriever.GetUsersAsync(numUsers));
+            Assert.AreEqual($"Unexpected error from Random User API. Error message: {errorMessage}", ex.Message);
 
             handler.VerifyAll();
         }

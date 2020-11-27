@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using RandomUserGeneratorData.Core.Exceptions;
 using RandomUserGeneratorData.Core.Logic;
 using RandomUserGeneratorData.Core.Models;
 
@@ -31,8 +32,15 @@ namespace RandomUserGeneratorData.Controllers
                 return new BadRequestObjectResult($"Must request at least one user. Number of users requested: {numUsers}.");
             }
 
-            var randomUserGeneratorDataHolder = await _randomUserGeneratorLogic.GetRandomUserGeneratorDataHolder(numUsers);
-            return Ok(randomUserGeneratorDataHolder);
+            try
+            {
+                var randomUserGeneratorDataHolder = await _randomUserGeneratorLogic.GetRandomUserGeneratorDataHolder(numUsers);
+                return Ok(randomUserGeneratorDataHolder);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
     }
 }
