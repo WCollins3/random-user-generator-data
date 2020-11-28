@@ -97,6 +97,10 @@ namespace RandomUserGeneratorData.Tests.Controllers
             logger.VerifyAll();
         }
 
+        /// <summary>
+        ///     Tests that the Get method catches exceptions thrown in the logic layer.
+        /// </summary>
+        /// <returns>N/A</returns>
         [TestMethod]
         public async Task Get_Catches_Exception_Returns_ObjectResult()
         {

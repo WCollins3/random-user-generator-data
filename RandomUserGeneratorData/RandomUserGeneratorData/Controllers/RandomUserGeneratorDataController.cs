@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using RandomUserGeneratorData.Core.Exceptions;
 using RandomUserGeneratorData.Core.Logic;
-using RandomUserGeneratorData.Core.Models;
 
 namespace RandomUserGeneratorData.Controllers
 {
+    /// <summary>
+    ///     Controller used to retrieve data related to collections of randomly-generated users.
+    /// </summary>
     [ApiController]
     [Route("[controller]")]
     public class RandomUserGeneratorDataController : ControllerBase
@@ -24,6 +23,11 @@ namespace RandomUserGeneratorData.Controllers
             _randomUserGeneratorLogic = randomUserGeneratorLogic;
         }
 
+        /// <summary>
+        ///     GET method for data related to randomly-generated users.
+        /// </summary>
+        /// <param name="numUsers">Number of users to retrieve data on.</param>
+        /// <returns>A <see cref="RandomUserGeneratorData"/> object related to the user data retrieved.</returns>
         [HttpGet("numberOfUsers/{numUsers:int}/data")]
         public async Task<IActionResult> Get(int numUsers)
         {

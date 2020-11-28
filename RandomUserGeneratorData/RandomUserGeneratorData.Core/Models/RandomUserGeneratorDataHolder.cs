@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace RandomUserGeneratorData.Core.Models
 {
+    /// <summary>
+    ///     Class built to hold data about randomly-generated users.
+    /// </summary>
     public class RandomUserGeneratorDataHolder
     {
         /// <summary>
@@ -27,6 +28,10 @@ namespace RandomUserGeneratorData.Core.Models
         /// </summary>
         public Dictionary<string, int> UserCountsByLastNameFirstLetter { get; set; }
 
+        /// <summary>
+        ///     Takes a collection of <see cref="User"/>s to create an instance of the <see cref="RandomUserGeneratorDataHolder"/> class.
+        /// </summary>
+        /// <param name="users">Collection of <see cref="User"/>s.</param>
         public RandomUserGeneratorDataHolder(IEnumerable<User> users)
         {
             UserCountsByGender = calculateUserCountsByTrait(users.Select(u => u.Gender));
@@ -35,6 +40,11 @@ namespace RandomUserGeneratorData.Core.Models
             UserCountsByLastNameFirstLetter = calculateUserCountsByTrait(users.Select(u => u.LastName.First().ToString()));
         }
 
+        /// <summary>
+        ///     Calculate the amount <see cref="User"/>s who have certain traits.
+        /// </summary>
+        /// <param name="values">Values of the traits of the <see cref="User"/>s. For example, user genders and names.</param>
+        /// <returns>Dictionary where the key is the value of a trait and the value is the number of users with that trait.</returns>
         private Dictionary<string, int> calculateUserCountsByTrait(IEnumerable<string> values)
         {
             return values.GroupBy(u => u)

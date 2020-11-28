@@ -1,11 +1,11 @@
 ﻿using RandomUserGeneratorData.Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RandomUserGeneratorData.Core.Logic
 {
+    /// <summary>
+    ///     Interface for logic classes built to retrieve <see cref="RandomUserGeneratorDataHolder"/> objects.
+    /// </summary>
     public interface IRandomUserGeneratorLogic
     {
         /// <summary>
