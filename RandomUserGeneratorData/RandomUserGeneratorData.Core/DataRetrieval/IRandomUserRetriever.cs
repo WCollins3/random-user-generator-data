@@ -1,11 +1,12 @@
 ﻿using RandomUserGeneratorData.Core.Models;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RandomUserGeneratorData.Core.DataRetrieval
 {
+    /// <summary>
+    ///     Interface for classes built to retrieve random user data.
+    /// </summary>
     public interface IRandomUserRetriever
     {
         /// <summary>

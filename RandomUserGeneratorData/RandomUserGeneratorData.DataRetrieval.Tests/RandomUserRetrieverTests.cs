@@ -3,13 +3,14 @@ using Moq;
 using Moq.Contrib.HttpClient;
 using RandomUserGeneratorData.Core.Exceptions;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RandomUserGeneratorData.DataRetrieval.Tests
 {
+    /// <summary>
+    ///     Tests for the <see cref="RandomUserRetriever"/> class.
+    /// </summary>
     [TestClass]
     public class RandomUserRetrieverTests
     {
@@ -19,6 +20,11 @@ namespace RandomUserGeneratorData.DataRetrieval.Tests
         private static string jonSnowUserString = "{\"gender\":\"male\",\"name\":{\"first\":\"Jon\",\"last\":\"Snow\"},\"location\":{\"country\":\"House Stark\"}}";
         private static string aryaStartUserString = "{\"gender\":\"female\",\"name\":{\"first\":\"Arya\",\"last\":\"Stark\"},\"location\":{\"country\":\"House Stark\"}}";
 
+        /// <summary>
+        ///     Tests the basic functionality of the GetUsersAsync method receiving 1 as a parameter
+        ///     and retrieving that many users from the random user API.
+        /// </summary>
+        /// <returns>N/A</returns>
         [TestMethod]
         public async Task GetUsersAsync_SingleUser_Valid()
         {
@@ -57,6 +63,11 @@ namespace RandomUserGeneratorData.DataRetrieval.Tests
             handler.VerifyAll();
         }
 
+        /// <summary>
+        ///     Tests the basic functionality of the GetUsersAsync method receiving more that 1 as
+        ///     a parameter and retrieving that many users from the random user API.
+        /// </summary>
+        /// <returns>N/A</returns>
         [TestMethod]
         public async Task GetUsersAsync_TwoUsers_Valid()
         {
@@ -101,6 +112,11 @@ namespace RandomUserGeneratorData.DataRetrieval.Tests
             handler.VerifyAll();
         }
 
+        /// <summary>
+        ///     Tests that the GetUsersAsync method throws an exception when 0 is passed in as the numUsers
+        ///     parameter.
+        /// </summary>
+        /// <returns>N/A</returns>
         [TestMethod]
         public async Task GetUsersAsync_Zero_Invalid()
         {
@@ -117,6 +133,11 @@ namespace RandomUserGeneratorData.DataRetrieval.Tests
             handler.VerifyAll();
         }
 
+        /// <summary>
+        ///     Tests that the GetUsersAsync method throws an exception when a negative number is passed in
+        ///     as the numUsers parameter.
+        /// </summary>
+        /// <returns>N/A</returns>
         [TestMethod]
         public async Task GetUsersAsync_Negative_Invalid()
         {
@@ -133,6 +154,11 @@ namespace RandomUserGeneratorData.DataRetrieval.Tests
             handler.VerifyAll();
         }
 
+        /// <summary>
+        ///     Tests that the GetUsersAsync method returns an <see cref="UnexpectedApiException"/> when
+        ///     the GetStringAsync method throws an exception.
+        /// </summary>
+        /// <returns>N/A</returns>
         [TestMethod]
         public async Task GetUsersAsync_UnexpectedApiException()
         {

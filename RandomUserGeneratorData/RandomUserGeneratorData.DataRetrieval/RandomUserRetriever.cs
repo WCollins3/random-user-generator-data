@@ -4,18 +4,22 @@ using RandomUserGeneratorData.Core.Exceptions;
 using RandomUserGeneratorData.Core.Models;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace RandomUserGeneratorData.DataRetrieval
 {
+    /// <summary>
+    ///     A class to retrieve random users from the random-user API.
+    /// </summary>
     public class RandomUserRetriever : IRandomUserRetriever
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
+        /// <summary>
+        ///     Creates an instance of the <see cref="RandomUserRetriever"/> class.
+        /// </summary>
+        /// <param name="httpClientFactory"></param>
         public RandomUserRetriever(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;

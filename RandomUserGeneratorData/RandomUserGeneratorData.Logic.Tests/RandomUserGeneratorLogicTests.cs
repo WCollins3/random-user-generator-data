@@ -54,7 +54,7 @@ namespace RandomUserGeneratorData.Logic.Tests
         ///     Tests that the GetRandomUserGeneratorDataHolder method throws an
         ///     <see cref="InvalidOperationException"/> when the numUsers parameter is 0.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>N/A</returns>
         [TestMethod]
         public async Task GetRandomUserGeneratorDataHolder_Zero_Invalid()
         {
@@ -73,7 +73,7 @@ namespace RandomUserGeneratorData.Logic.Tests
         ///     Tests that the GetRandomUserGeneratorDataHolder method throws an
         ///     <see cref="InvalidOperationException"/> when the numUsers parameter is negative.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>N/A</returns>
         [TestMethod]
         public async Task GetRandomUserGeneratorDataHolder_Negative_Invalid()
         {

@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace RandomUserGeneratorData.Core.Models
+﻿namespace RandomUserGeneratorData.Core.Models
 {
+    /// <summary>
+    ///     A randomly-generated user.
+    /// </summary>
     public class User
     {
         /// <summary>
